@@ -18,3 +18,22 @@ function getComputerChoice() {
 }
 
 let computerChoice = getComputerChoice();
+
+function getHumanChoice() {
+    input = parseInt(prompt("Enter 1 (for rock), 2 (for paper) or 3 (for scissors): "))
+    choice = ""
+    
+    if (input === 1) {
+        choice = "Rock";
+    } else if (input === 2) {
+        choice = "Paper";
+    } else if (input === 3) {
+        choice = "Scissors";
+    } else {
+        choice = "Invalid"
+    }
+    return choice;
+}
+
+let humanChoice = getHumanChoice();
+console.log(humanChoice)
