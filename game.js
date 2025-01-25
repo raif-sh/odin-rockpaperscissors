@@ -9,13 +9,13 @@ function getComputerChoice() {
 
     // Check whether random number falls into the first sement
     if (randomNum <= divider) {
-        choice = "Rock";
+        choice = "rock";
     // Check if random number is in the middle segment
     } else if (randomNum < (divider * 2) && randomNum > divider) {
-        choice = "Paper";
+        choice = "paper";
     // If both of the conditions are not met, assign value for the rest
     } else {
-        choice = "Scissors";
+        choice = "scissors";
     }
     return choice;
 }
@@ -23,19 +23,9 @@ function getComputerChoice() {
 // Create a function that gets use input for their choice
 function getHumanChoice() {
     // Creating a variable to prompt user
-    input = parseInt(prompt("Enter 1 (for rock), 2 (for paper) or 3 (for scissors): "))
-    choice = ""
+    input = prompt("Pick your choice - rock, paper or scissors: ")
+    choice = input.toLowerCase()
 
-    // Check if the input matches three options and assign the value
-    if (input === 1) {
-        choice = "Rock";
-    } else if (input === 2) {
-        choice = "Paper";
-    } else if (input === 3) {
-        choice = "Scissors";
-    } else {
-        choice = "Invalid"
-    }
     return choice;
 }
 
@@ -47,47 +37,47 @@ let computerScore = 0;
 // plays a single round and increment round winner's score and log winner
 function playRound(humanChoice, computerChoice){
 
-    if (humanChoice === "Rock") {
-        if (computerChoice === "Rock") {
-            console.log("Rock meets rock, its a draw")
+    if (humanChoice === "rock") {
+        if (computerChoice === "rock") {
+            console.log("rock meets rock, its a draw")
             return
-        } else if (computerChoice === "Paper") {
-            console.log("Paper beats rock. You lose!")
+        } else if (computerChoice === "paper") {
+            console.log("paper beats rock. You lose!")
             computerScore++;
             return;
-        } else if (computerChoice === "Scissors") {
-            console.log("Rock beats scissors. You win!")
+        } else if (computerChoice === "scissors") {
+            console.log("rock beats scissors. You win!")
             humanScore++;
             return;
         }
     }
 
-    if (humanChoice === "Paper") {
-        if (computerChoice === "Rock") {
-            console.log("Paper beats rock, You win!")
+    if (humanChoice === "paper") {
+        if (computerChoice === "rock") {
+            console.log("paper beats rock, You win!")
             humanScore++
             return
-        } else if (computerChoice === "Paper") {
-            console.log("Paper meets paper. Its a draw!")
+        } else if (computerChoice === "paper") {
+            console.log("paper meets paper. Its a draw!")
             return;
-        } else if (computerChoice === "Scissors") {
-            console.log("Scissors beat paper. You lose!")
+        } else if (computerChoice === "scissors") {
+            console.log("scissors beat paper. You lose!")
             computerScore++;
             return;
         }
     }
 
-    if (humanChoice === "Scissors") {
-        if (computerChoice === "Rock") {
-            console.log("Scissors cannot beat rock, You lose!")
+    if (humanChoice === "scissors") {
+        if (computerChoice === "rock") {
+            console.log("scissors cannot beat rock, You lose!")
             computerScore++
             return
-        } else if (computerChoice === "Paper") {
-            console.log("Scissors beat paper. You win!")
+        } else if (computerChoice === "paper") {
+            console.log("scissors beat paper. You win!")
             humanScore++
             return;
-        } else if (computerChoice === "Scissors") {
-            console.log("Scissors meet scissors. Its a draw!")
+        } else if (computerChoice === "scissors") {
+            console.log("scissors meet scissors. Its a draw!")
             return;
         }
     }
