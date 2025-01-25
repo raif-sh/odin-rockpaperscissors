@@ -26,6 +26,9 @@ function getHumanChoice() {
     input = prompt("Pick your choice - rock, paper or scissors: ")
     choice = input.toLowerCase()
 
+    if (choice != 'rock' && choice != 'paper' && choice != 'scissors'){
+        console.log(choice + " is an invalid option")
+    }
     return choice;
 }
 
