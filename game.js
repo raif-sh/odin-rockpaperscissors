@@ -39,7 +39,9 @@ let computerScore = 0;
 // Function that takes the human and computer choice as arguments
 // plays a single round and increment round winner's score and log winner
 function playRound(humanChoice, computerChoice){
-
+    // Check human vs computer selection to find winner
+    // Increment the score of the winner
+    // Console.log the round winner/loser/draw
     if (humanChoice === "rock") {
         if (computerChoice === "rock") {
             console.log("rock meets rock, its a draw")
@@ -84,17 +86,25 @@ function playRound(humanChoice, computerChoice){
             return;
         }
     }
-    // Increment the score of the winner
-    // Console.log the round winner
 }
 
-// Create a variable to lock in computer choice for this round
-const computerSelection = getComputerChoice();
+function playGame() {
+    
+    for (let i = 1; i < 6; i++){
+        console.log("Round number: " + i)
 
-// Creating a variable to track user choice for current round
-const humanSelection = getHumanChoice();
+        // Create a variable to lock in computer choice for this round
+        const computerSelection = getComputerChoice();
+        
+        // Creating a variable to track user choice for current round
+        const humanSelection = getHumanChoice();
 
-playRound(humanSelection, computerSelection);
+        playRound(humanSelection, computerSelection);
+        
+        console.log("human score: " + humanScore);
+        console.log("computer score: " + computerScore);
+    }
 
-console.log("human score: " + humanScore);
-console.log("computer score: " + computerScore);
+}
+
+playGame()
