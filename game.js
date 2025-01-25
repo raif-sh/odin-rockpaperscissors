@@ -20,9 +20,6 @@ function getComputerChoice() {
     return choice;
 }
 
-// Create a variable to lock in computer choice for this round
-let computerChoice = getComputerChoice();
-
 // Create a function that gets use input for their choice
 function getHumanChoice() {
     // Creating a variable to prompt user
@@ -42,5 +39,69 @@ function getHumanChoice() {
     return choice;
 }
 
+// Keeping track of the players score
+let humanScore = 0;
+let computerScore = 0;
+
+// Function that takes the human and computer choice as arguments
+// plays a single round and increment round winner's score and log winner
+function playRound(humanChoice, computerChoice){
+
+    if (humanChoice === "Rock") {
+        if (computerChoice === "Rock") {
+            console.log("Rock meets rock, its a draw")
+            return
+        } else if (computerChoice === "Paper") {
+            console.log("Paper beats rock. You lose!")
+            computerScore++;
+            return;
+        } else if (computerChoice === "Scissors") {
+            console.log("Rock beats scissors. You win!")
+            humanScore++;
+            return;
+        }
+    }
+
+    if (humanChoice === "Paper") {
+        if (computerChoice === "Rock") {
+            console.log("Paper beats rock, You win!")
+            humanScore++
+            return
+        } else if (computerChoice === "Paper") {
+            console.log("Paper meets paper. Its a draw!")
+            return;
+        } else if (computerChoice === "Scissors") {
+            console.log("Scissors beat paper. You lose!")
+            computerScore++;
+            return;
+        }
+    }
+
+    if (humanChoice === "Scissors") {
+        if (computerChoice === "Rock") {
+            console.log("Scissors cannot beat rock, You lose!")
+            computerScore++
+            return
+        } else if (computerChoice === "Paper") {
+            console.log("Scissors beat paper. You win!")
+            humanScore++
+            return;
+        } else if (computerChoice === "Scissors") {
+            console.log("Scissors meet scissors. Its a draw!")
+            return;
+        }
+    }
+    // Increment the score of the winner
+    // Console.log the round winner
+}
+
+// Create a variable to lock in computer choice for this round
+const computerSelection = getComputerChoice();
+
 // Creating a variable to track user choice for current round
-let humanChoice = getHumanChoice();
+const humanSelection = getHumanChoice();
+
+playRound(humanSelection, computerSelection);
+
+console.log("human score: " + humanScore);
+console.log("computer score: " + computerScore);
