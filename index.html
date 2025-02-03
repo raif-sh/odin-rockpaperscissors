@@ -7,10 +7,34 @@
     <style>
     body {
         background-color: black;
+        color: aliceblue;
+    }
+    .confirm {
+        margin-top: 32px;
     }
     </style>
 </head>
 <body>
+    <h1>Rock paper scissors</h1>
+    <p>A simple game playing against a computer. May the odds be ever in your favor</p>
+    <p>This is round number <span class="round"></span></p>
+    <hr>
+    <div class="game">
+        <button>Rock</button>
+        <button>Paper</button>
+        <button>Scissors</button>
+    </div>
+    <p class="roundPick"></p>
+    <div class="confirm">
+        <button>Confirm</button>
+    </div>
+    <div class="progress">
+        <h2>Game progress</h2>
+        <p class="roundResult"></p>
+        <p>Your score is <span class="humanProgress"></span></p>
+        <p>Computer score is <span class="computerProgress"></span></p>
+        <p class="winner"></p>
+    </div>
     <script src="game.js"></script>
 </body>
 </html>

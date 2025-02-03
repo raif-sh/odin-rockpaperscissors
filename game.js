@@ -1,3 +1,28 @@
+// Game setup information
+let roundNum = document.querySelector(".round");
+let round = 1
+roundNum.textContent = round;
+
+// Keeping track of the players score
+let humanScore = 0;
+let computerScore = 0;
+
+let humanProgress = document.querySelector(".humanProgress");
+humanProgress.textContent = humanScore;
+
+let computerProgress= document.querySelector(".computerProgress");
+computerProgress.textContent = computerScore;
+
+// Current round info
+let currentHuman = document.querySelector(".roundPick");
+currentHuman.textContent = "Choose one and click confirm to play"
+
+let currentResult = document.querySelector(".roundResult");
+
+// Finishing up game
+let declareWinner = document.querySelector(".winner");
+let gameConfirm = document.querySelector(".confirm")
+
 // Create a function that randomly returns 'rock', 'paper' or 'scissors'.
 function getComputerChoice() {
     // Generate a random number between 0 to 1
@@ -20,21 +45,30 @@ function getComputerChoice() {
     return choice;
 }
 
+// Getting user input from buttons
+let pick = "";
+let humanSelection = ""
+let buttonGame = document.querySelector(".game");
+
+buttonGame.addEventListener("click", (event) => {
+    pick = event.target.textContent;
+    humanSelection = getHumanChoice()
+    currentHuman.textContent = "You have picked " + humanSelection;
+})
+
 // Create a function that gets use input for their choice
 function getHumanChoice() {
     // Creating a variable to prompt user
-    input = prompt("Pick your choice - rock, paper or scissors: ")
-    choice = input.toLowerCase()
+    // input = prompt("Pick your choice - rock, paper or scissors: ")
+    
+    let choice = pick.toLowerCase();
 
     if (choice != 'rock' && choice != 'paper' && choice != 'scissors'){
-        console.log(choice + " is an invalid option")
+        currentResult.textContent = choice + " is an invalid option";
     }
+
     return choice;
 }
-
-// Keeping track of the players score
-let humanScore = 0;
-let computerScore = 0;
 
 // Function that takes the human and computer choice as arguments
 // plays a single round and increment round winner's score and log winner
@@ -44,14 +78,14 @@ function playRound(humanChoice, computerChoice){
     // Console.log the round winner/loser/draw
     if (humanChoice === "rock") {
         if (computerChoice === "rock") {
-            console.log("rock meets rock, its a draw")
+            currentResult.textContent = "rock meets rock, its a draw"
             return
         } else if (computerChoice === "paper") {
-            console.log("paper beats rock. You lose!")
+            currentResult.textContent = "paper beats rock. You lose!"
             computerScore++;
             return;
         } else if (computerChoice === "scissors") {
-            console.log("rock beats scissors. You win!")
+            currentResult.textContent = "rock beats scissors. You win!"
             humanScore++;
             return;
         }
@@ -59,14 +93,14 @@ function playRound(humanChoice, computerChoice){
 
     if (humanChoice === "paper") {
         if (computerChoice === "rock") {
-            console.log("paper beats rock, You win!")
+            currentResult.textContent = "paper beats rock, You win!"
             humanScore++
             return
         } else if (computerChoice === "paper") {
-            console.log("paper meets paper. Its a draw!")
+            currentResult.textContent = "paper meets paper. Its a draw!"
             return;
         } else if (computerChoice === "scissors") {
-            console.log("scissors beat paper. You lose!")
+            currentResult.textContent = "scissors beat paper. You lose!"
             computerScore++;
             return;
         }
@@ -74,37 +108,43 @@ function playRound(humanChoice, computerChoice){
 
     if (humanChoice === "scissors") {
         if (computerChoice === "rock") {
-            console.log("scissors cannot beat rock, You lose!")
+            currentResult.textContent = "scissors cannot beat rock, You lose!"
             computerScore++
             return
         } else if (computerChoice === "paper") {
-            console.log("scissors beat paper. You win!")
+            currentResult.textContent = "scissors beat paper. You win!"
             humanScore++
             return;
         } else if (computerChoice === "scissors") {
-            console.log("scissors meet scissors. Its a draw!")
+            currentResult.textContent = "scissors meet scissors. Its a draw!"
             return;
         }
     }
 }
 
+
 function playGame() {
-    
-    for (let i = 1; i < 6; i++){
-        console.log("Round number: " + i)
+    // Create a variable to lock in computer choice for this round
+    const computerSelection = getComputerChoice();
 
-        // Create a variable to lock in computer choice for this round
-        const computerSelection = getComputerChoice();
-        
-        // Creating a variable to track user choice for current round
-        const humanSelection = getHumanChoice();
+    // Play one round of game and show new score
+    playRound(humanSelection, computerSelection);
 
-        playRound(humanSelection, computerSelection);
-        
-        console.log("human score: " + humanScore);
-        console.log("computer score: " + computerScore);
+    if (humanScore === 5) {
+        declareWinner.textContent = "You Won! Refresh to start new game"
+        gameConfirm.firstElementChild.remove();
+    } else if (computerScore === 5) {
+        declareWinner.textContent = "Computer Won! Refresh to start new game"
+        gameConfirm.firstElementChild.remove();
+    } else {
+        computerProgress.textContent = computerScore;
+        humanProgress.textContent = humanScore;
+        roundNum.textContent = round;
     }
-
 }
 
-playGame()
+const playNow = document.querySelector(".confirm")
+playNow.addEventListener("click", () => {
+    playGame();
+    round++;
+})
